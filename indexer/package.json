@@ -1,0 +1,16 @@
+{
+    "name": "indexer",
+    "version": "1.0.0",
+    "type": "module",
+    "private": true,
+    "description": "Offline TF-IDF index builder",
+    "dependencies": {
+      "natural": "^8.1.0",
+      "stopword": "^3.1.5"
+    },
+    "scripts": {
+       "index": "node build-index.js",
+       "test": "echo \"Error: no test specified\" && exit 1"
+    }
+}
+  
