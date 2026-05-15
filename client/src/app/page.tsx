@@ -212,8 +212,8 @@ export default function Home() {
                 </h3>
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
                   Find problems by topic, difficulty, company, or pattern. Our
-                  intelligent search understands what you&apos;re looking for and
-                  surfaces the most relevant problems instantly.
+                  intelligent search understands what you&apos;re looking for
+                  and surfaces the most relevant problems instantly.
                 </p>
                 <Link
                   href="/search"
@@ -298,10 +298,11 @@ export default function Home() {
                 </h3>
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
                   Monitor your learning journey with detailed analytics. See
-                  which topics you&apos;ve mastered and where you need more practice.
+                  which topics you&apos;ve mastered and where you need more
+                  practice.
                 </p>
                 <Link
-                  href="/progress"
+                  href="/profile"
                   className="text-[hsl(105,68%,70%)] hover:text-[hsl(105,68%,65%)] font-medium inline-flex items-center gap-2"
                 >
                   Learn more about Progress Tracking →
@@ -379,19 +380,16 @@ export default function Home() {
               { name: "Hash Tables", icon: "🗂️", count: 156 },
               { name: "Recursion", icon: "🔄", count: 143 },
             ].map((topic, i) => (
-              <Link
+              <div
                 key={i}
-                href={`/topics/${topic.name.toLowerCase().replace(" ", "-")}`}
-                className="group bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-lg transition-all"
+                className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-200 dark:border-gray-800 hover:shadow-lg transition-all"
               >
                 <div className="text-4xl mb-3">{topic.icon}</div>
-                <h3 className="text-lg font-bold mb-2 group-hover:text-blue-600 transition-colors">
-                  {topic.name}
-                </h3>
+                <h3 className="text-lg font-bold mb-2">{topic.name}</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   {topic.count} problems
                 </p>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
