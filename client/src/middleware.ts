@@ -8,14 +8,14 @@ export function middleware(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/signup");
 
   const isProtectedRoute =
-    request.nextUrl.pathname.startsWith("/search");
+    request.nextUrl.pathname.startsWith("/search") ||
+    request.nextUrl.pathname.startsWith("/profile") ||   
+    request.nextUrl.pathname.startsWith("/contests");    
 
-  // Not logged in → trying to access protected route
   if (!token && isProtectedRoute) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Logged in → trying to access login/signup
   if (token && isAuthRoute) {
     return NextResponse.redirect(new URL("/search", request.url));
   }
@@ -24,5 +24,11 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/search/:path*", "/login", "/signup"],
+  matcher: [
+    "/search/:path*",
+    "/profile/:path*",     
+    "/contests/:path*",   
+    "/login",
+    "/signup",
+  ],
 };

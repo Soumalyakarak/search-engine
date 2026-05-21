@@ -1,5 +1,5 @@
 import express, {Router} from "express";
-import { loginUser, resetUserPassword, userForgotPassword, userRegistration, verifyUser,refreshToken, getUser, verifyUserForgotPassword, logoutUser} from "@/controllers/auth.controller.js";
+import { loginUser, resetUserPassword, userForgotPassword, userRegistration, verifyUser,refreshToken, getUser, verifyUserForgotPassword, logoutUser,markProblem,getProblemStats,getSolvedProblems} from "@/controllers/auth.controller.js";
 import isAuthenticated from "@/middlewares/isAuthenticated.js";
 
 const router: Router = express.Router();
@@ -13,6 +13,9 @@ router.post("/forgot-password-user", userForgotPassword);
 router.post("/reset-password-user", resetUserPassword);
 router.post("/verify-forgot-password-user", verifyUserForgotPassword);
 router.post("/logout-user", logoutUser);
+router.post("/mark-problem", isAuthenticated, markProblem);
+router.get("/problem-stats", isAuthenticated, getProblemStats);
+router.get("/solved-problems", isAuthenticated, getSolvedProblems);
 
 
 

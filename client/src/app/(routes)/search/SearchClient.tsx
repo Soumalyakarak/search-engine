@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import api from "@/lib/api";
-import SearchBar from "./components/SearchBar";
+import SearchBar, { Filters } from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 
 type RawSearchResult = {
@@ -29,13 +29,19 @@ export default function SearchClient() {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [loading, setLoading] = useState(false);
   const [solvedIds, setSolvedIds] = useState<Set<string>>(new Set());
+  const [filters, setFilters] = useState<Filters>({
+    platform: "all",
+    difficulty: "all",
+  });
 
   // ← seed solved problems on mount
   useEffect(() => {
     const fetchSolved = async () => {
       try {
         const res = await api.get("/api/auth/solved-problems");
-        const ids: string[] = res.data.problems.map((p: { problemId: string }) => p.problemId);
+        const ids: string[] = res.data.problems.map(
+          (p: { problemId: string }) => p.problemId
+        );
         setSolvedIds(new Set(ids));
       } catch {
         // user not logged in or no solved problems yet — silent fail
@@ -86,21 +92,51 @@ export default function SearchClient() {
     setVisibleCount((c) => c + PAGE_SIZE);
   }
 
+  // apply filters client-side
+  const filteredResults = allResults.filter((r) => {
+    if (filters.platform !== "all" && r.platform !== filters.platform) return false;
+    if (
+      filters.difficulty !== "all" &&
+      r.platform === "leetcode" &&
+      r.difficulty?.toLowerCase() !== filters.difficulty
+    ) return false;
+    return true;
+  });
+
   return (
     <>
-      <SearchBar value={query} onChange={setQuery} onSearch={handleSearch} />
+      <SearchBar
+        value={query}
+        onChange={setQuery}
+        onSearch={handleSearch}
+        filters={filters}
+        onFilterChange={setFilters}
+      />
 
-      {loading && <p className="mt-6 text-center text-gray-500">Searching…</p>}
+      {loading && (
+        <p className="mt-6 text-center text-gray-500">Searching…</p>
+      )}
 
-      {!loading && allResults.length > 0 && (
+      {!loading && allResults.length > 0 && filteredResults.length === 0 && (
+        <p className="mt-6 text-center text-gray-400">
+          No results match the selected filters.
+        </p>
+      )}
+
+      {!loading && filteredResults.length > 0 && (
         <>
+          <p className="mt-4 px-1 text-sm text-gray-400">
+            {filteredResults.length} result{filteredResults.length !== 1 ? "s" : ""}
+            {filters.platform !== "all" || filters.difficulty !== "all" ? " (filtered)" : ""}
+          </p>
+
           <SearchResults
-            results={allResults.slice(0, visibleCount)}
+            results={filteredResults.slice(0, visibleCount)}
             solvedIds={solvedIds}
             onMarkSolved={handleMarkSolved}
           />
 
-          {visibleCount < allResults.length && (
+          {visibleCount < filteredResults.length && (
             <div className="flex justify-center mt-10 max-w-4xl mx-auto">
               <button
                 onClick={handleViewMore}

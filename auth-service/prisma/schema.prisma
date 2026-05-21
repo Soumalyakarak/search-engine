@@ -14,4 +14,17 @@ model User {
   isVerified   Boolean  @default(false)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  problems     UserProblem[] 
+}
+
+model UserProblem {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  problemId  String
+  platform   String
+  difficulty String?
+  solvedAt   DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, problemId]) 
 }

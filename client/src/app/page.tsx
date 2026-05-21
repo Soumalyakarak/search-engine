@@ -73,6 +73,24 @@ export default function Home() {
     animateValue("topics", 87, 2000);
   }, []);
 
+  // add this useEffect in your Home component
+  useEffect(() => {
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLAnchorElement;
+      if (target.tagName === "A" && target.hash) {
+        const el = document.querySelector(target.hash);
+        if (el) {
+          e.preventDefault();
+          const offset = 80; // navbar height
+          const top = el.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      }
+    };
+    document.addEventListener("click", handleAnchorClick);
+    return () => document.removeEventListener("click", handleAnchorClick);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
       <nav className="sticky top-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
@@ -97,6 +115,9 @@ export default function Home() {
               </Link>
               <Link href="/docs" className="hover:text-green-500">
                 Docs
+              </Link>
+              <Link href="/contests" className="hover:text-green-500">
+                Contests
               </Link>
             </div>
 
@@ -310,41 +331,67 @@ export default function Home() {
               </div>
             </div>
 
+            {/* Replace the entire Company-Specific Problems section with this */}
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h3 className="text-3xl md:text-4xl font-bold mb-6">
-                  Company-Specific Problems
+                  Contest Calendar
                 </h3>
                 <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                  Preparing for interviews? Filter by company to practice
-                  problems that have been asked at Google, Meta, Amazon, and
-                  200+ other companies.
+                  Never miss a contest again. Track upcoming competitions from
+                  LeetCode, Codeforces, and AtCoder in one place. Click any
+                  contest to register and participate directly.
                 </p>
                 <Link
-                  href="/companies"
+                  href="/contests"
                   className="text-[hsl(105,68%,70%)] hover:text-[hsl(105,68%,65%)] font-medium inline-flex items-center gap-2"
                 >
-                  Browse Companies →
+                  View Contest Calendar →
                 </Link>
               </div>
-              <div className="bg-linear-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-gray-800">
+
+              <div className="bg-linear-to-br from-blue-50 to-green-50 dark:from-blue-950/20 dark:to-green-950/20 rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-gray-800">
                 <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg space-y-3">
                   {[
-                    { name: "Google", count: 847, logo: "🔵" },
-                    { name: "Meta", count: 623, logo: "🔷" },
-                    { name: "Amazon", count: 891, logo: "🟠" },
-                    { name: "Microsoft", count: 542, logo: "🟦" },
-                  ].map((company, i) => (
+                    {
+                      platform: "AtCoder",
+                      time: "In 3 days · 9:00 PM",
+                      duration: "100m",
+                      color: "#10B981",
+                    },
+                    {
+                      platform: "Codeforces",
+                      time: "In 5 days · 7:35 PM",
+                      duration: "2.5h",
+                      color: "#3B82F6",
+                    },
+                    {
+                      platform: "LeetCode",
+                      time: "Tomorrow · 8:00 AM",
+                      duration: "1.5h",
+                      color: "#F97316",
+                    },
+                  ].map((contest, i) => (
                     <div
                       key={i}
                       className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
                     >
                       <div className="flex items-center gap-3">
-                        <span className="text-2xl">{company.logo}</span>
-                        <span className="font-medium">{company.name}</span>
+                        <span
+                          className="w-3 h-3 rounded-full shrink-0"
+                          style={{ backgroundColor: contest.color }}
+                        />
+                        <div>
+                          <p className="text-sm font-medium">
+                            {contest.platform}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {contest.time}
+                          </p>
+                        </div>
                       </div>
-                      <span className="text-sm text-gray-600 dark:text-gray-400">
-                        {company.count} problems
+                      <span className="text-xs text-gray-500 bg-white dark:bg-gray-700 px-2 py-1 rounded-full">
+                        {contest.duration}
                       </span>
                     </div>
                   ))}
@@ -456,7 +503,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-[hsl(105,68%,65%)] text-black">
+      <section
+        id="pricing"
+        className="py-24 px-6 bg-[hsl(105,68%,65%)] text-black"
+      >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Start mastering DSA today
@@ -494,7 +544,7 @@ export default function Home() {
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li>
                   <Link
-                    href="/features"
+                    href="#features"
                     className="hover:text-gray-900 dark:hover:text-white"
                   >
                     Features
@@ -502,48 +552,48 @@ export default function Home() {
                 </li>
                 <li>
                   <Link
-                    href="/pricing"
+                    href="#topics"
                     className="hover:text-gray-900 dark:hover:text-white"
                   >
-                    Pricing
+                    Topics
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/roadmap"
+                    href="/contests"
                     className="hover:text-gray-900 dark:hover:text-white"
                   >
-                    Roadmap
+                    Contests
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-bold mb-4">Resources</h4>
+              <h4 className="font-bold mb-4">Account</h4>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li>
                   <Link
-                    href="/docs"
+                    href="/search"
                     className="hover:text-gray-900 dark:hover:text-white"
                   >
-                    Documentation
+                    Search Problems
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/blog"
+                    href="/profile"
                     className="hover:text-gray-900 dark:hover:text-white"
                   >
-                    Blog
+                    Profile
                   </Link>
                 </li>
                 <li>
                   <Link
-                    href="/guides"
+                    href="/signup"
                     className="hover:text-gray-900 dark:hover:text-white"
                   >
-                    Guides
+                    Sign Up
                   </Link>
                 </li>
               </ul>
@@ -554,7 +604,7 @@ export default function Home() {
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li>
                   <Link
-                    href="/about"
+                    href="#"
                     className="hover:text-gray-900 dark:hover:text-white"
                   >
                     About
@@ -562,18 +612,10 @@ export default function Home() {
                 </li>
                 <li>
                   <Link
-                    href="/contact"
+                    href="mailto:soumalyakarak2@gmail.com"
                     className="hover:text-gray-900 dark:hover:text-white"
                   >
                     Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/careers"
-                    className="hover:text-gray-900 dark:hover:text-white"
-                  >
-                    Careers
                   </Link>
                 </li>
               </ul>

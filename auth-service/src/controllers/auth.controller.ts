@@ -288,3 +288,79 @@ export const logoutUser = (req: Request, res: Response) => {
   res.status(200).json({ message: "Logged out successfully" });
 };
 
+// mark a problem solved
+export const markProblem = async (req: any, res: Response, next: NextFunction) => {
+  try {
+    const { problemId, platform, difficulty } = req.body;
+    const userId = req.user.id;
+
+    // upsert — don't duplicate if already marked
+    const problem = await prisma.userProblem.upsert({
+      where: {
+        userId_problemId: { userId, problemId },
+      },
+      update: { solvedAt: new Date() },
+      create: {
+        userId,
+        problemId,
+        platform,
+        difficulty: difficulty != null ? String(difficulty).toLowerCase() : null, 
+      },
+    });
+
+    res.status(200).json({ success: true, problem });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get stats
+export const getProblemStats = async (req: any, res: Response, next: NextFunction) => {
+  try {
+    const userId = req.user.id;
+    const problems = await prisma.userProblem.findMany({ where: { userId } });
+
+    const lc = problems.filter(p => p.platform === "leetcode");
+    const cf = problems.filter(p => p.platform === "codeforces");
+    const r = (min: number, max: number) =>
+      cf.filter(p => Number(p.difficulty) >= min && Number(p.difficulty) <= max).length;
+
+    const stats = {
+      total: problems.length,
+      easy:   lc.filter(p => p.difficulty?.toLowerCase() === "easy").length,
+      medium: lc.filter(p => p.difficulty?.toLowerCase() === "medium").length,
+      hard:   lc.filter(p => p.difficulty?.toLowerCase() === "hard").length,
+      cf_newbie:     r(0,    1199),
+      cf_pupil:      r(1200, 1399),
+      cf_specialist: r(1400, 1599),
+      cf_expert:     r(1600, 1899),
+      cf_cm:         r(1900, 2099),
+      cf_master:     r(2100, 2299),
+      cf_im:         r(2300, 2399),
+      cf_gm:         r(2400, 2599),
+      cf_igm:        r(2600, 2999),
+      cf_lgm:        cf.filter(p => Number(p.difficulty) >= 3000).length,
+      leetcode:   lc.length,
+      codeforces: cf.length,
+    };
+
+    res.status(200).json({ success: true, stats });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// get solved problems list
+export const getSolvedProblems = async (req: any, res: Response, next: NextFunction) => {
+  try {
+    const userId = req.user.id;
+    const problems = await prisma.userProblem.findMany({
+      where: { userId },
+      orderBy: { solvedAt: "desc" },
+    });
+    res.status(200).json({ success: true, problems });
+  } catch (error) {
+    next(error);
+  }
+};
+

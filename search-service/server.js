@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 import searchRoutes from "./routes/search.routes.js";
+import contestRoutes from "./routes/contest.routes.js";
+
 
 dotenv.config();
 
@@ -21,6 +23,7 @@ const PORT = process.env.PORT || 4000;
 app.use(cookieParser()); //read cookies
 
 app.use("/search", searchRoutes);
+app.use("/contests", contestRoutes);
 
 app.listen(PORT, () => {
   console.log(`🚀 Search service running at http://localhost:${PORT}`);

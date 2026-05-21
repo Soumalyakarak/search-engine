@@ -74,6 +74,23 @@ app.use("/api/search", createProxyMiddleware({
   },
 }));
 
+app.use("/api/contests", createProxyMiddleware({
+  target: process.env.SEARCH_SERVICE_URL || "http://localhost:4000",
+  changeOrigin: true,
+  xfwd: true,
+  pathRewrite: { "^/": "/contests/" },
+  on: {
+    proxyReq: (proxyReq, req, res) => {
+      if (req.headers.cookie) {
+        proxyReq.setHeader("cookie", req.headers.cookie);
+      }
+      proxyReq.removeHeader("origin");
+      proxyReq.removeHeader("referer");
+      fixRequestBody(proxyReq, req, res);
+    },
+  },
+}));
+
 app.use(express.json({ limit: "100mb" }));
 app.use(express.urlencoded({ extended: true, limit: "100mb" }));
 
