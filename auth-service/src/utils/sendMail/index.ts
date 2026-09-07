@@ -10,8 +10,9 @@ const __dirname = path.dirname(__filename);
 /* ---------------- TRANSPORTER ---------------- */
 
 const transporter = nodemailer.createTransport({
-  port: Number(process.env.SMTP_PORT) || 587,
-  service: process.env.SMTP_SERVICE,
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT),
+  secure: false,
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASSWORD,
@@ -45,7 +46,7 @@ export const sendEmail = async (
     const html = await renderEmailTemplate(templateName, data);
 
     await transporter.sendMail({
-      from: `"Search Engine" <${process.env.SMTP_USER}>`,
+      from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
       to,
       subject,
       html,
@@ -53,7 +54,7 @@ export const sendEmail = async (
 
     return true;
   } catch (error) {
-    console.error("❌ Error sending email:", error);
+    console.error("Error sending email:", error);
     return false;
   }
 };
