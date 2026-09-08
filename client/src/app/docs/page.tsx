@@ -13,7 +13,7 @@ export default function DocsPage() {
             <span className="text-lg font-bold text-gray-900 dark:text-white">DSA Search</span>
           </div>
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Documentation</h1>
-          <p className="text-lg text-gray-500">
+          <p className="text-lg text-gray-500 dark:text-[#9aa7a0] ">
             Everything you need to know about using DSA Search.
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function DocsPage() {
             <a
               key={card.title}
               href={card.href}
-              className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6 hover:shadow-md transition group"
+              className="bg-white dark:bg-[#121815] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6 hover:shadow-md transition group"
             >
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-[hsl(105,68%,50%)]">{card.icon}</span>
@@ -58,7 +58,7 @@ export default function DocsPage() {
                 </h2>
                 <ArrowRight className="w-4 h-4 ml-auto text-gray-300 group-hover:text-[hsl(105,68%,45%)] transition" />
               </div>
-              <p className="text-sm text-gray-500">{card.desc}</p>
+              <p className="text-sm text-gray-500 dark:text-[#9aa7a0] ">{card.desc}</p>
             </a>
           ))}
         </div>
@@ -66,7 +66,7 @@ export default function DocsPage() {
         {/* Sections */}
         <div className="flex flex-col gap-8">
 
-          <div id="search" className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8">
+          <div id="search" className="bg-white dark:bg-[#121815] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <Search className="w-5 h-5 text-[hsl(105,68%,50%)]" /> Searching Problems
             </h2>
@@ -85,7 +85,7 @@ export default function DocsPage() {
             </div>
           </div>
 
-          <div id="filters" className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8">
+          <div id="filters" className="bg-white dark:bg-[#121815] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-[hsl(105,68%,50%)]" /> Filters
             </h2>
@@ -95,16 +95,16 @@ export default function DocsPage() {
             <div className="flex flex-col gap-3">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
                 <p className="font-medium text-gray-800 dark:text-gray-200 mb-1">Platform filter</p>
-                <p className="text-sm text-gray-500">Switch between All Platforms, LeetCode only, or Codeforces only.</p>
+                <p className="text-sm text-gray-500 dark:text-[#9aa7a0] ">Switch between All Platforms, LeetCode only, or Codeforces only.</p>
               </div>
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
                 <p className="font-medium text-gray-800 dark:text-gray-200 mb-1">Difficulty filter</p>
-                <p className="text-sm text-gray-500">Available when LeetCode or All is selected. Filter by Easy, Medium, or Hard.</p>
+                <p className="text-sm text-gray-500 dark:text-[#9aa7a0] ">Available when LeetCode or All is selected. Filter by Easy, Medium, or Hard.</p>
               </div>
             </div>
           </div>
 
-          <div id="profile" className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8">
+          <div id="profile" className="bg-white dark:bg-[#121815] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <User className="w-5 h-5 text-[hsl(105,68%,50%)]" /> Profile & Progress
             </h2>
@@ -115,16 +115,16 @@ export default function DocsPage() {
             <div className="flex flex-col gap-3">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
                 <p className="font-medium text-gray-800 dark:text-gray-200 mb-1">LeetCode stats</p>
-                <p className="text-sm text-gray-500">Tracks Easy, Medium and Hard problems solved separately with a progress ring.</p>
+                <p className="text-sm text-gray-500 dark:text-[#9aa7a0] ">Tracks Easy, Medium and Hard problems solved separately with a progress ring.</p>
               </div>
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
                 <p className="font-medium text-gray-800 dark:text-gray-200 mb-1">Codeforces stats</p>
-                <p className="text-sm text-gray-500">Problems grouped by all 10 rating tiers from Newbie (≤1199) to Legendary Grandmaster (≥3000).</p>
+                <p className="text-sm text-gray-500 dark:text-[#9aa7a0] ">Problems grouped by all 10 rating tiers from Newbie (≤1199) to Legendary Grandmaster (≥3000).</p>
               </div>
             </div>
           </div>
 
-          <div id="contests" className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8">
+          <div id="contests" className="bg-white dark:bg-[#121815] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-[hsl(105,68%,50%)]" /> Contest Calendar
             </h2>
@@ -135,11 +135,11 @@ export default function DocsPage() {
             <div className="flex flex-col gap-3">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
                 <p className="font-medium text-gray-800 dark:text-gray-200 mb-1">Click a date</p>
-                <p className="text-sm text-gray-500">Click any highlighted date to see all contests on that day with start time and duration.</p>
+                <p className="text-sm text-gray-500 dark:text-[#9aa7a0] ">Click any highlighted date to see all contests on that day with start time and duration.</p>
               </div>
               <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
                 <p className="font-medium text-gray-800 dark:text-gray-200 mb-1">Register directly</p>
-                <p className="text-sm text-gray-500">Click any contest card to open the registration page on the original platform.</p>
+                <p className="text-sm text-gray-500 dark:text-[#9aa7a0] ">Click any contest card to open the registration page on the original platform.</p>
               </div>
             </div>
           </div>

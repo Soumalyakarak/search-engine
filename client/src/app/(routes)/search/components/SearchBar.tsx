@@ -1,4 +1,5 @@
 import { Search } from "lucide-react";
+import Link from "next/link";
 
 export type Filters = {
   platform: "all" | "leetcode" | "codeforces";
@@ -20,10 +21,15 @@ export default function SearchBar({
 }) {
   return (
     <div className="flex flex-col gap-4 w-full">
-
+      <Link
+        href="/"
+        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        ← Back to home
+      </Link>
       {/* Search input */}
       <div className="flex items-center gap-4 w-full">
-        <div className="flex flex-1 items-center p-1.5 border-2 border-gray-200 rounded-full bg-white shadow-sm focus-within:border-[hsl(105,68%,70%)]">
+        <div className="flex flex-1 items-center p-1.5 border-2 border-gray-200 dark:border-[#27312c] rounded-full bg-white dark:bg-[#121815]  shadow-sm focus-within:border-[hsl(105,68%,70%)]">
           <div className="pl-5 text-gray-400">
             <Search className="w-5 h-5" />
           </div>
@@ -37,7 +43,7 @@ export default function SearchBar({
         </div>
         <button
           onClick={onSearch}
-          className="px-8 py-3 rounded-full bg-[hsl(105,68%,77%)] hover:bg-[hsl(105,68%,70%)] font-medium transition active:scale-95"
+          className="px-8 py-3 rounded-full bg-[hsl(105,68%,77%)] hover:bg-[hsl(105,68%,70%)] font-medium transition active:scale-95 cursor-pointer"
         >
           Search
         </button>
@@ -45,27 +51,32 @@ export default function SearchBar({
 
       {/* Filters */}
       <div className="flex items-center gap-3 flex-wrap px-1">
-
         {/* Platform filter */}
-        <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-full px-1 py-1 shadow-sm">
+        <div className="flex items-center gap-1 bg-white dark:bg-[#121815]  border border-gray-200 dark:border-[#27312c]   rounded-full px-1 py-1 shadow-sm">
           {(["all", "leetcode", "codeforces"] as const).map((p) => (
             <button
               key={p}
-              onClick={() => onFilterChange({ ...filters, platform: p, difficulty: "all" })}
+              onClick={() =>
+                onFilterChange({ ...filters, platform: p, difficulty: "all" })
+              }
               className={`px-4 py-1.5 rounded-full text-sm font-medium transition ${
                 filters.platform === p
-                  ? "bg-[hsl(105,68%,70%)] text-black"
-                  : "text-gray-500 hover:text-gray-800"
+                  ? "bg-[hsl(105,68%,70%)] text-black dark:text-[#f5f7f6] "
+                  : "text-gray-500 dark:text-[#9aa7a0]  hover:text-gray-800"
               }`}
             >
-              {p === "all" ? "All Platforms" : p === "leetcode" ? "LeetCode" : "Codeforces"}
+              {p === "all"
+                ? "All Platforms"
+                : p === "leetcode"
+                ? "LeetCode"
+                : "Codeforces"}
             </button>
           ))}
         </div>
 
         {/* Difficulty filter — only for leetcode or all */}
         {filters.platform !== "codeforces" && (
-          <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-full px-1 py-1 shadow-sm">
+          <div className="flex items-center gap-1 bg-white dark:bg-[#121815]  border border-gray-200 dark:border-[#27312c]   rounded-full px-1 py-1 shadow-sm">
             {(["all", "easy", "medium", "hard"] as const).map((d) => (
               <button
                 key={d}
@@ -78,8 +89,8 @@ export default function SearchBar({
                       ? "bg-yellow-100 text-yellow-700"
                       : d === "hard"
                       ? "bg-red-100 text-red-700"
-                      : "bg-[hsl(105,68%,70%)] text-black"
-                    : "text-gray-500 hover:text-gray-800"
+                      : "bg-[hsl(105,68%,70%)] text-black dark:text-[#f5f7f6] "
+                    : "text-gray-500 dark:text-[#9aa7a0]  hover:text-gray-800"
                 }`}
               >
                 {d === "all" ? "All Levels" : d}
@@ -87,7 +98,6 @@ export default function SearchBar({
             ))}
           </div>
         )}
-
       </div>
     </div>
   );

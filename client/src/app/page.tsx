@@ -16,6 +16,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import ProfileDropdown from "@/components/ProfileDropdown/ProfileDropdown";
+import ThemeToggle from "@/components/ThemeToggle";
 
 type User = {
   id: string;
@@ -92,8 +93,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950">
-      <nav className="sticky top-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
+    <div className="min-h-screen bg-white dark:bg-[#121815]  dark:bg-gray-950">
+      <nav className="sticky top-0 z-50 bg-white dark:bg-[#121815] /90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center gap-2 cursor-pointer">
@@ -120,7 +121,7 @@ export default function Home() {
                 Contests
               </Link>
             </div>
-
+            <ThemeToggle />
             <div className="flex items-center gap-4">
               {loadingAuth ? null : !user ? (
                 <>
@@ -134,7 +135,7 @@ export default function Home() {
                   </Link>
 
                   <Link href="/signup">
-                    <Button className="h-12 px-8 rounded-full bg-[hsl(105,68%,77%)] font-bold text-black">
+                    <Button className="h-12 px-8 rounded-full bg-[hsl(105,68%,77%)] font-bold text-black dark:text-[#f5f7f6] ">
                       Get started for free
                     </Button>
                   </Link>
@@ -158,7 +159,7 @@ export default function Home() {
           </p>
 
           <div className="max-w-2xl mx-auto mb-10">
-            <div className="flex items-center p-1.5 border-2 border-gray-200 dark:border-gray-700 rounded-full bg-white dark:bg-gray-900 focus-within:border-[hsl(105,68%,70%)] transition-colors shadow-sm">
+            <div className="flex items-center p-1.5 border-2 border-gray-200 dark:border-[#27312c]  dark:border-gray-700 rounded-full bg-white dark:bg-[#121815]  dark:bg-gray-900 focus-within:border-[hsl(106,65%,50%)] transition-colors shadow-sm">
               <div className="pl-5 text-gray-400">
                 <Search className="w-6 h-6" />
               </div>
@@ -171,7 +172,7 @@ export default function Home() {
 
               <Link
                 href="/search"
-                className="flex items-center gap-2 h-15 px-6 bg-[hsl(105,68%,77%)] hover:bg-[hsl(105,68%,70%)] text-black font-medium text-lg rounded-full transition-all active:scale-95 shrink-0"
+                className="flex items-center gap-2 h-15 px-6 bg-[hsl(105,56%,52%)] hover:bg-[hsl(104,36%,55%)] text-black dark:text-[#f5f7f6]  font-medium text-lg rounded-full transition-all active:scale-95 shrink-0"
                 role="button"
               >
                 Start searching for free
@@ -185,7 +186,7 @@ export default function Home() {
       <section className="py-16 px-6 bg-gray-50 dark:bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
           <p className="text-center text-gray-600 dark:text-gray-400 mb-8">
-            DSA Search is trusted by developers worldwide
+            DSA Search is trusted by Students
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 text-center">
@@ -243,8 +244,8 @@ export default function Home() {
                   Learn more about Smart Search →
                 </Link>
               </div>
-              <div className="bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-gray-800">
-                <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+              <div className="bg-linear-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-[#27312c]  dark:border-gray-800">
+                <div className="bg-white dark:bg-[#121815]  dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
                   <div className="flex items-center gap-3 mb-4">
                     <Search className="w-6 h-6 text-gray-400" />
                     <input
@@ -273,8 +274,8 @@ export default function Home() {
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="order-2 lg:order-1 bg-linear-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20 rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-gray-800">
-                <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
+              <div className="order-2 lg:order-1 bg-linear-to-br from-green-50 to-blue-50 dark:from-green-950/20 dark:to-blue-950/20 rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-[#27312c]  dark:border-gray-800">
+                <div className="bg-white dark:bg-[#121815]  dark:bg-gray-900 rounded-2xl p-6 shadow-lg">
                   <div className="grid grid-cols-3 gap-2 mb-4">
                     <div className="bg-green-100 dark:bg-green-900/30 p-3 rounded-lg text-center">
                       <div className="text-2xl font-bold text-green-600">
@@ -350,8 +351,8 @@ export default function Home() {
                 </Link>
               </div>
 
-              <div className="bg-linear-to-br from-blue-50 to-green-50 dark:from-blue-950/20 dark:to-green-950/20 rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-gray-800">
-                <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg space-y-3">
+              <div className="bg-linear-to-br from-blue-50 to-green-50 dark:from-blue-950/20 dark:to-green-950/20 rounded-3xl p-8 lg:p-12 border border-gray-200 dark:border-[#27312c]  dark:border-gray-800">
+                <div className="bg-white dark:bg-[#121815]  dark:bg-gray-900 rounded-2xl p-6 shadow-lg space-y-3">
                   {[
                     {
                       platform: "AtCoder",
@@ -385,12 +386,12 @@ export default function Home() {
                           <p className="text-sm font-medium">
                             {contest.platform}
                           </p>
-                          <p className="text-xs text-gray-500">
+                          <p className="text-xs text-gray-500 dark:text-[#9aa7a0] ">
                             {contest.time}
                           </p>
                         </div>
                       </div>
-                      <span className="text-xs text-gray-500 bg-white dark:bg-gray-700 px-2 py-1 rounded-full">
+                      <span className="text-xs text-gray-500 dark:text-[#9aa7a0]  bg-white dark:bg-[#121815]  dark:bg-gray-700 px-2 py-1 rounded-full">
                         {contest.duration}
                       </span>
                     </div>
@@ -429,7 +430,7 @@ export default function Home() {
             ].map((topic, i) => (
               <div
                 key={i}
-                className="bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-200 dark:border-gray-800 hover:shadow-lg transition-all"
+                className="rounded-2xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:border-[#27312c] dark:bg-[#121815] dark:hover:border-[#18ed63]/40 dark:hover:shadow-[0_8px_30px_rgba(24,237,99,0.08)]"
               >
                 <div className="text-4xl mb-3">{topic.icon}</div>
                 <h3 className="text-lg font-bold mb-2">{topic.name}</h3>
@@ -505,13 +506,13 @@ export default function Home() {
 
       <section
         id="pricing"
-        className="py-24 px-6 bg-[hsl(105,68%,65%)] text-black"
+        className="py-24 px-6 bg-[hsl(105,68%,65%)] text-black dark:text-[#f5f7f6] "
       >
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             Start mastering DSA today
           </h2>
-          <p className="text-xl md:text-2xl mb-10 opacity-90 text-black">
+          <p className="text-xl md:text-2xl mb-10 opacity-90 text-black dark:text-[#f5f7f6] ">
             Join 45,000+ developers who are leveling up their problem-solving
             skills
           </p>
@@ -622,7 +623,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-gray-200 dark:border-gray-800 text-center text-sm text-gray-600 dark:text-gray-400">
+          <div className="pt-8 border-t border-gray-200 dark:border-[#27312c]  dark:border-gray-800 text-center text-sm text-gray-600 dark:text-gray-400">
             <p>© {new Date().getFullYear()} DSA Search. All rights reserved.</p>
           </div>
         </div>

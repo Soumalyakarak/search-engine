@@ -78,7 +78,7 @@ function CircularProgress({
           / {total}
         </text>
       </svg>
-      <span className="text-xs text-gray-500">{label}</span>
+      <span className="text-xs text-gray-500 dark:text-[#9aa7a0] ">{label}</span>
     </div>
   );
 }
@@ -116,7 +116,7 @@ export default function ProfilePage() {
       <div className="max-w-5xl mx-auto flex flex-col gap-5">
 
         {/* User info */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
+        <div className="bg-white dark:bg-[#121815]  dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
           <div className="flex flex-col sm:flex-row sm:items-center gap-5">
             <div className="flex items-center gap-4 flex-1 min-w-0">
               <div className="w-16 h-16 rounded-full bg-black text-white text-2xl font-bold flex items-center justify-center shrink-0">
@@ -126,25 +126,25 @@ export default function ProfilePage() {
                 <p className="text-lg font-semibold truncate text-gray-900 dark:text-white">
                   {user.email}
                 </p>
-                <p className="text-sm text-gray-500 mt-0.5">DSA Search Member</p>
+                <p className="text-sm text-gray-500 dark:text-[#9aa7a0]  mt-0.5">DSA Search Member</p>
               </div>
             </div>
             <div className="flex items-center gap-8 border-t sm:border-t-0 sm:border-l border-gray-100 dark:border-gray-800 pt-4 sm:pt-0 sm:pl-8 flex-wrap">
               <div className="text-center">
                 <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.total}</p>
-                <p className="text-xs text-gray-500 mt-1">Total</p>
+                <p className="text-xs text-gray-500 dark:text-[#9aa7a0]  mt-1">Total</p>
               </div>
               <div className="text-center">
                 <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.leetcode}</p>
-                <p className="text-xs text-gray-500 mt-1">LeetCode</p>
+                <p className="text-xs text-gray-500 dark:text-[#9aa7a0]  mt-1">LeetCode</p>
               </div>
               <div className="text-center">
                 <p className="text-2xl font-semibold text-gray-900 dark:text-white">{stats.codeforces}</p>
-                <p className="text-xs text-gray-500 mt-1">Codeforces</p>
+                <p className="text-xs text-gray-500 dark:text-[#9aa7a0]  mt-1">Codeforces</p>
               </div>
               <div className="text-center">
                 <p className="text-2xl font-semibold text-gray-900 dark:text-white">{completion}%</p>
-                <p className="text-xs text-gray-500 mt-1">Complete</p>
+                <p className="text-xs text-gray-500 dark:text-[#9aa7a0]  mt-1">Complete</p>
               </div>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default function ProfilePage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
           {/* LeetCode */}
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
+          <div className="bg-white dark:bg-[#121815]  dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
             <div className="flex items-center gap-2 mb-6">
               <Image src="/logos/leetcode.png" alt="leetcode" width={20} height={20} className="object-contain" />
               <p className="text-base font-semibold text-gray-900 dark:text-white">LeetCode</p>
@@ -198,7 +198,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Codeforces */}
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
+          <div className="bg-white dark:bg-[#121815]  dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
             <div className="flex items-center gap-2 mb-5">
               <Image src="/logos/codeforces.png" alt="codeforces" width={20} height={20} className="object-contain" />
               <p className="text-base font-semibold text-gray-900 dark:text-white">Codeforces</p>
@@ -213,7 +213,7 @@ export default function ProfilePage() {
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: rank.color }} />
                     <span className="text-sm text-gray-600 dark:text-gray-400">{rank.label}</span>
-                    <span className="text-xs text-gray-400 dark:text-gray-500 hidden sm:inline">{rank.range}</span>
+                    <span className="text-xs text-gray-400 dark:text-gray-500 dark:text-[#9aa7a0]  hidden sm:inline">{rank.range}</span>
                   </div>
                   <span className="text-sm font-semibold text-gray-900 dark:text-white">
                     {stats[rank.key as keyof Stats]}
@@ -226,10 +226,10 @@ export default function ProfilePage() {
         </div>
 
         {/* Overall progress */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
+        <div className="bg-white dark:bg-[#121815]  dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-4">
             <p className="text-base font-semibold text-gray-900 dark:text-white">Overall progress</p>
-            <span className="text-sm text-gray-500">{stats.total} / {TOTAL_PROBLEMS}</span>
+            <span className="text-sm text-gray-500 dark:text-[#9aa7a0] ">{stats.total} / {TOTAL_PROBLEMS}</span>
           </div>
           <div className="flex items-center justify-around gap-8 flex-wrap">
             <CircularProgress value={stats.total} total={TOTAL_PROBLEMS} color="hsl(105,68%,45%)" label="All problems" size={180} />

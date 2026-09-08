@@ -114,7 +114,7 @@ export default function SearchClient() {
       />
 
       {loading && (
-        <p className="mt-6 text-center text-gray-500">Searching…</p>
+        <p className="mt-6 text-center text-gray-500 dark:text-[#9aa7a0] ">Searching…</p>
       )}
 
       {!loading && allResults.length > 0 && filteredResults.length === 0 && (

@@ -159,8 +159,8 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="w-full py-10 min-h-[85h] bg-[#f1f1f1]">
-      <h1 className="text-4xl font-poppons font-semibold text-black text-center">
+    <div className="w-full py-10 min-h-[85h] bg-[#f7f8f8] dark:bg-[#0b0f0d] ">
+      <h1 className="text-4xl font-poppons font-semibold text-black dark:text-[#f5f7f6]  text-center">
         Forgot Password
       </h1>
       <p className="text-center text-lg font-medium py-3 text-[#00000099]">
@@ -168,13 +168,13 @@ export default function ForgotPassword() {
       </p>
 
       <div className="w-full flex justify-center">
-        <div className="md:w-[480px] p-8 bg-white shadow rounded-lg">
+        <div className="md:w-[480px] p-8 bg-white dark:bg-[#121815]  shadow rounded-lg">
           {step === "email" && (
             <>
               <h3 className="text-3xl font-semibold text-center mb-2">
                 Forgot Password
               </h3>
-              <p className="text-center text-gray-500 mb-4">
+              <p className="text-center text-gray-500 dark:text-[#9aa7a0]  mb-4">
                 Go back to?{" "}
                 <Link href="/login" className="text-blue-500">
                   Login

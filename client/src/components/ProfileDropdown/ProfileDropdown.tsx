@@ -29,7 +29,7 @@ export default function ProfileDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="w-10 h-10 rounded-full bg-black text-white text-xl font-bold flex items-center justify-center">
+        <button className="cursor-pointer w-10 h-10 rounded-full bg-black border-white border-2 text-white text-xl font-bold flex items-center justify-center">
           {user.email[0].toUpperCase()}
         </button>
       </DropdownMenuTrigger>

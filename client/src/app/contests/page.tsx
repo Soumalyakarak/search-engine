@@ -102,7 +102,7 @@ export default function ContestsPage() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Contest Calendar</h1>
-            <p className="text-sm text-gray-500 mt-1">Upcoming contests from LeetCode, Codeforces and AtCoder</p>
+            <p className="text-sm text-gray-500 dark:text-[#9aa7a0]  mt-1">Upcoming contests from LeetCode, Codeforces and AtCoder</p>
           </div>
           {/* Platform legend */}
           <div className="hidden sm:flex items-center gap-4">
@@ -113,14 +113,14 @@ export default function ContestsPage() {
             ].map((p) => (
               <div key={p.label} className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full" style={{ backgroundColor: p.color }} />
-                <span className="text-xs text-gray-500">{p.label}</span>
+                <span className="text-xs text-gray-500 dark:text-[#9aa7a0] ">{p.label}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Calendar */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
+        <div className="bg-white dark:bg-[#121815] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl overflow-hidden">
 
           {/* Month nav */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-gray-800">
@@ -177,7 +177,7 @@ export default function ContestsPage() {
                   <div className="flex justify-end mb-1">
                     <span className={`text-sm font-medium w-7 h-7 flex items-center justify-center rounded-full
                       ${isToday
-                        ? "bg-black text-white dark:bg-white dark:text-black"
+                        ? "bg-black text-white dark:bg-white dark:text-black dark:text-[#f5f7f6] "
                         : "text-gray-700 dark:text-gray-300"
                       }`}
                     >
@@ -209,7 +209,7 @@ export default function ContestsPage() {
 
         {/* Selected day contests */}
         {selectedDay && (
-          <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
+          <div className="bg-white dark:bg-[#121815] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
             <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">
               Contests on {new Date(selectedDay + "T00:00:00").toLocaleDateString([], {
                 weekday: "long", year: "numeric", month: "long", day: "numeric"
@@ -256,7 +256,7 @@ export default function ContestsPage() {
         )}
 
         {/* Upcoming contests list */}
-        <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
+        <div className="bg-white dark:bg-[#121815] dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-6">
           <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">
             Upcoming contests
           </h3>
