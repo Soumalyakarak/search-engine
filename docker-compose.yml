@@ -1,0 +1,43 @@
+services:
+
+  client:
+    build:
+      context: ./client
+      args:
+        NEXT_PUBLIC_API_GATEWAY: http://localhost:5000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-gateway
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./api-gateway/.env
+    environment:
+      AUTH_SERVICE_URL: http://auth-service:6001
+      SEARCH_SERVICE_URL: http://search-service:4000
+      CLIENT_ORIGIN: http://localhost:3000
+    depends_on:
+      - auth-service
+      - search-service
+
+  auth-service:
+    build:
+      context: ./auth-service
+    ports:
+      - "6001:6001"
+    env_file:
+      - ./auth-service/.env
+
+  search-service:
+    build:
+      context: .
+      dockerfile: search-service/Dockerfile
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./search-service/.env
