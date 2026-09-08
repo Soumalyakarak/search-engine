@@ -281,10 +281,18 @@ export const resetUserPassword = async (
 
 // logout
 export const logoutUser = (req: Request, res: Response) => {
-  res.clearCookie("access_token");
-  res.clearCookie("refresh_token");
+  const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" as const : "lax" as const,
+  };
 
-  res.status(200).json({ message: "Logged out successfully" });
+  res.clearCookie("access_token", cookieOptions);
+  res.clearCookie("refresh_token", cookieOptions);
+
+  res.status(200).json({
+    message: "Logged out successfully",
+  });
 };
 
 // mark a problem solved
