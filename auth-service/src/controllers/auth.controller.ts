@@ -7,13 +7,13 @@ import {
   validateRegistrationData,
   verifyForgotPasswordOtp,
   verifyOtp,
-} from "@/utils/auth.helper.js";
+} from "../utils/auth.helper.js";
 
 import bcrypt from "bcryptjs";
-import { AuthError, ValidationError } from "@/middlewares/index.js";
-import prisma from "@/lib/prisma.js";
+import { AuthError, ValidationError } from "../middlewares/index.js";
+import prisma from "../lib/prisma.js";
 import jwt from "jsonwebtoken";
-import { setCookie } from "@/utils/cookies/setCookie.js";
+import { setCookie } from "../utils/cookies/setCookie.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -43,13 +43,12 @@ export const userRegistration = async (
     await checkOtpRestrictions(email);
     await trackOtpRequests(email);
 
-    const otp = await sendOtp(name, email, "user-activation-mail");
+    const otp = await sendOtp(name, email, "user-activation-mail","Verify Your Email");
 
     res.status(200).json({
       message: "OTP sent successfully",
-      otp, // remove in production
     });
-  } catch (error) {
+  }catch (error){
     next(error);
   }
 };

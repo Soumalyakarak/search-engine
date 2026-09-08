@@ -45,11 +45,17 @@ export const sendEmail = async (
   try {
     const html = await renderEmailTemplate(templateName, data);
 
-    await transporter.sendMail({
+    const info = await transporter.sendMail({
       from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
       to,
       subject,
       html,
+    });
+
+    console.log("Email sent:", {
+      to,
+      subject,
+      messageId: info.messageId,
     });
 
     return true;

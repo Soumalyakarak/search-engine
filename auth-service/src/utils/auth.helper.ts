@@ -1,9 +1,9 @@
 import crypto from "crypto";
-import { ValidationError } from "@/middlewares/index.js";
-import redis from "@/lib/redis.js";
+import { ValidationError } from "../middlewares/index.js";
+import redis from "../lib/redis.js";
 import { sendEmail } from "./sendMail/index.js";
 import type { NextFunction, Request, Response } from "express";
-import prisma from "@/lib/prisma.js";
+import prisma from "../lib/prisma.js";
 
 /* =====================================================
    EMAIL VALIDATION
@@ -79,13 +79,25 @@ export const trackOtpRequests = async (email: string) => {
 export const sendOtp = async (
   name: string,
   email: string,
-  template: string
+  template: string,
+  subject: string = "Verify Your Email"
 ) => {
   const otp = crypto.randomInt(1000, 9999).toString();
 
-  await sendEmail(email, "Verify Your Email", template, { name, otp });
+  const emailSent = await sendEmail(
+    email,
+    subject,
+    template,
+    { name, otp }
+  );
+
+  if (!emailSent) {
+    throw new Error("Failed to send OTP email");
+  }
 
   await redis.set(`otp:${email}`, otp, "EX", 300);
+
+  return otp;
 };
 
 
@@ -151,7 +163,12 @@ export const handleForgotPassword = async (
 
     await checkOtpRestrictions(email);
     await trackOtpRequests(email);
-    await sendOtp(name, email, "user-activation-mail");
+    await sendOtp(
+      name ?? "User",
+      email,
+      "forgot-password-user-mail",
+      "Reset Your Password"
+    );
 
 
     res.status(200).json({
