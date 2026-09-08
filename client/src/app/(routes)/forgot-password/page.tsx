@@ -55,7 +55,11 @@ export default function ForgotPassword() {
     }, 1000);
   };
 
-  const requestOtpMutation = useMutation<ApiResponse, AxiosError<ApiError>, EmailForm>({
+  const requestOtpMutation = useMutation<
+    ApiResponse,
+    AxiosError<ApiError>,
+    EmailForm
+  >({
     mutationFn: async ({ email }: EmailForm) => {
       const response = await api.post("/api/auth/forgot-password-user", {
         email,
@@ -182,7 +186,9 @@ export default function ForgotPassword() {
               </p>
 
               <form onSubmit={handleSubmit(onSubmitEmail)}>
-                <label className="block text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                <label className="block text-gray-700 dark:text-gray-300 mb-1">
+                  Email
+                </label>
                 <input
                   type="email"
                   placeholder="support@Bcart.com"
@@ -252,7 +258,8 @@ export default function ForgotPassword() {
                 {canResend ? (
                   <button
                     onClick={() => {
-                      if (userEmail) requestOtpMutation.mutate({ email: userEmail });
+                      if (userEmail)
+                        requestOtpMutation.mutate({ email: userEmail });
                     }}
                     className="text-blue-500 text-center mt-4 cursor-pointer"
                   >
@@ -271,18 +278,19 @@ export default function ForgotPassword() {
 
           {step === "reset" && (
             <>
-              <h3 className="text-xl font-semibold text-center mb-4">
+              <h3 className="mb-4 text-center text-xl font-semibold text-gray-900 dark:text-white">
                 Reset Password
               </h3>
 
               <form onSubmit={handleSubmit(onSubmitPassword)}>
-                <label className="block text-gray-700 mb-1">
+                <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
                   New Password
                 </label>
+
                 <input
                   type="password"
                   placeholder="Min. 6 characters"
-                  className="w-full p-2 border-gray-300 outline-0 !rounded mb-1"
+                  className="mb-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 placeholder:text-gray-400 outline-none transition focus:border-[#18d95b] focus:ring-2 focus:ring-[#18d95b]/20 dark:border-[#39443e] dark:bg-[#121815] dark:text-white dark:placeholder:text-gray-500 dark:focus:border-[#18d95b]"
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -291,8 +299,9 @@ export default function ForgotPassword() {
                     },
                   })}
                 />
+
                 {errors.password && (
-                  <p className="text-red-500 text-sm">
+                  <p className="text-sm text-red-500">
                     {String(errors.password.message)}
                   </p>
                 )}
@@ -300,7 +309,7 @@ export default function ForgotPassword() {
                 <button
                   type="submit"
                   disabled={resetPasswordMutation.isPending}
-                  className="w-full text-lg cursor-pointer bg-black text-white py-2 rounded-lg disabled:opacity-50"
+                  className="mt-3 w-full cursor-pointer rounded-lg bg-black py-2 text-lg text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-gray-200"
                 >
                   {resetPasswordMutation.isPending
                     ? "Resetting"
@@ -308,7 +317,7 @@ export default function ForgotPassword() {
                 </button>
 
                 {serverError && (
-                  <p className="text-red-500 text-sm mt-2">{serverError}</p>
+                  <p className="mt-2 text-sm text-red-500">{serverError}</p>
                 )}
               </form>
             </>
