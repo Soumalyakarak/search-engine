@@ -78,11 +78,11 @@ export default function Login() {
       <div className="rounded-3xl border border-[#e5e9ee] bg-white dark:bg-[#121815] /95 p-7 shadow-[0_20px_60px_rgba(30,50,70,0.10)] sm:p-9">
         {/* Heading */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-[#0b0b0b]">
+          <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
             Welcome back
           </h1>
 
-          <p className="mt-2 text-sm text-[#68758a]">
+          <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
             Sign in to continue your DSA journey.
           </p>
         </div>
@@ -104,7 +104,7 @@ export default function Login() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Email */}
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-[#263246]">
+            <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
               Email
             </label>
 
@@ -134,7 +134,7 @@ export default function Login() {
           {/* Password */}
           <div>
             <div className="mb-1.5 flex items-center justify-between">
-              <label className="text-sm font-medium text-[#263246]">
+              <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
                 Password
               </label>
             </div>

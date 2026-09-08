@@ -201,11 +201,11 @@ export default function Signup() {
             ================================================== */}
 
             <div className="text-center">
-              <h1 className="text-3xl font-bold tracking-tight text-[#0b0b0b]">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                 Create your account
               </h1>
 
-              <p className="mt-2 text-sm text-[#68758a]">
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                 Join DSA Search and take your problem-solving skills to the next
                 level.
               </p>
@@ -228,7 +228,7 @@ export default function Signup() {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {/* Name */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#263246]">
+                <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Name
                 </label>
 
@@ -257,7 +257,7 @@ export default function Signup() {
 
               {/* Email */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#263246]">
+                <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Email
                 </label>
 
@@ -292,7 +292,7 @@ export default function Signup() {
 
               {/* Password */}
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-[#263246]">
+                <label className="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Password
                 </label>
 

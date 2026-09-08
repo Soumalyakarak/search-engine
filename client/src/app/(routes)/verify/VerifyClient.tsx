@@ -30,9 +30,7 @@ export default function VerifyClient() {
     onSuccess: () => router.push("/login"),
 
     onError: (error) => {
-      setServerError(
-        error.response?.data?.message ?? "Verification failed"
-      );
+      setServerError(error.response?.data?.message ?? "Verification failed");
     },
   });
 
@@ -47,12 +45,15 @@ export default function VerifyClient() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#f7f8f8] dark:bg-[#0b0f0d]">
       <div className="w-full max-w-md rounded-2xl border bg-white p-8 shadow-lg dark:bg-[#121815]">
-        <h2 className="mb-4 text-center text-2xl font-bold">
+        <h2 className="mb-4 text-center text-2xl font-bold text-gray-900 dark:text-white">
           Verify OTP
         </h2>
 
-        <p className="mb-6 text-center text-sm text-gray-500 dark:text-[#9aa7a0]">
-          OTP sent to <strong>{email}</strong>
+        <p className="mb-6 text-center text-sm text-gray-500 dark:text-gray-400">
+          OTP sent to{" "}
+          <strong className="font-medium text-gray-700 dark:text-gray-200">
+            {email}
+          </strong>
         </p>
 
         <div className="mb-4 flex justify-center gap-4">
@@ -61,7 +62,22 @@ export default function VerifyClient() {
               key={i}
               type="text"
               maxLength={1}
-              className="h-12 w-12 rounded border border-gray-400 text-center outline-none"
+              className="
+              h-12 w-12 rounded-md border
+              border-gray-400
+              bg-white
+              text-center text-lg font-semibold
+              text-gray-900
+              outline-none
+              transition
+              focus:border-[#18ED63]
+              focus:ring-2
+              focus:ring-[#18ED63]/20
+              dark:border-gray-500
+              dark:bg-[#0b0f0d]
+              dark:text-white
+              dark:placeholder:text-gray-400
+            "
               value={digit}
               onChange={(e) => {
                 if (!/^[0-9]?$/.test(e.target.value)) return;
@@ -75,9 +91,7 @@ export default function VerifyClient() {
         </div>
 
         {serverError && (
-          <p className="mb-3 text-center text-sm text-red-500">
-            {serverError}
-          </p>
+          <p className="mb-3 text-center text-sm text-red-500">{serverError}</p>
         )}
 
         <button

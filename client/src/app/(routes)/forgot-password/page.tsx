@@ -182,7 +182,7 @@ export default function ForgotPassword() {
               </p>
 
               <form onSubmit={handleSubmit(onSubmitEmail)}>
-                <label className="block text-gray-700 mb-1">Email</label>
+                <label className="block text-gray-700 dark:text-gray-300 mb-1">Email</label>
                 <input
                   type="email"
                   placeholder="support@Bcart.com"
